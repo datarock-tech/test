@@ -1,369 +1,891 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataRock Technologies LLP | Enterprise Software Development</title>
-    <meta name="description" content="DataRock Technologies LLP - Expert Enterprise Software, Web & Mobile App Development, Cloud Solutions in Kerala, India.">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="DataRock Technologies LLP | Enterprise Software Development">
-    <meta property="og:description" content="Building secure, scalable, and high-performance digital solutions for modern businesses.">
-    <meta property="og:type" content="website">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DataRock Technologies LLP | Enterprise Software Development</title>
+  <meta name="description" content="DataRock Technologies LLP - Expert Enterprise Software, Web & Mobile App Development, Cloud Solutions in Kerala, India.">
 
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
-    <style>
-        .hero-bg { 
-            background: linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.88)), 
-                        url('background.png') center/cover no-repeat; 
-            background-attachment: fixed;
-        }
-        .section-title::after { 
-            content: ''; display: block; width: 80px; height: 4px; 
-            background: #e11d48; margin: 16px auto; 
-        }
-        .card-hover:hover { transform: translateY(-12px); }
-    </style>
+  <!-- Open Graph -->
+  <meta property="og:title" content="DataRock Technologies LLP | Enterprise Software Development">
+  <meta property="og:description" content="Building secure, scalable, and high-performance digital solutions for modern businesses.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.datarocktech.com/">
+  <meta name="theme-color" content="#24222C">
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #24222C;
+      --ink-2: #2E2C37;
+      --granite: #3F3E48;
+      --slate: #62616C;
+      --mist: #F3F2F5;
+      --line: #DFDEE4;
+      --white: #FFFFFF;
+      --rose: #E12A56;
+      --rose-dark: #C21E47;
+      --amber: #FCB041;
+      --teal: #1DAC92;
+      --font: "Schibsted Grotesk", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+      --wrap: 1180px;
+      --gutter: clamp(20px, 5vw, 40px);
+      --header-h: 76px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px); }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    h1, h2, h3 { margin: 0; line-height: 1.12; letter-spacing: -0.02em; }
+    p { margin: 0; }
+
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+    .section { padding: clamp(72px, 10vw, 128px) 0; }
+
+    :focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+
+    .skip {
+      position: absolute; left: 12px; top: -60px; z-index: 200;
+      background: var(--rose); color: #fff; padding: 10px 16px; border-radius: 6px; text-decoration: none;
+    }
+    .skip:focus { top: 12px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      font: 600 1rem/1 var(--font);
+      padding: 16px 26px; border-radius: 8px;
+      text-decoration: none; cursor: pointer; border: 2px solid transparent;
+      transition: background-color .2s, color .2s, border-color .2s;
+    }
+    .btn-primary { background: var(--rose); color: #fff; }
+    .btn-primary:hover { background: var(--rose-dark); }
+    .btn-ghost { border-color: rgba(255,255,255,.35); color: #fff; }
+    .btn-ghost:hover { border-color: #fff; }
+
+    /* Header */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: saturate(160%) blur(10px);
+      -webkit-backdrop-filter: saturate(160%) blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s;
+    }
+    .header.scrolled { border-bottom-color: var(--line); }
+    .header-inner { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; text-decoration: none; }
+    .brand img { height: 44px; width: auto; }
+    .brand-text { display: none; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; }
+    .brand-text span { color: var(--rose); }
+    .brand-text { color: #333; }
+    .brand.no-logo img { display: none; }
+    .brand.no-logo .brand-text { display: block; }
+
+    .nav { display: flex; align-items: center; gap: 4px; }
+    .nav a {
+      text-decoration: none; font-weight: 500; font-size: .98rem; color: var(--granite);
+      padding: 8px 12px; border-radius: 6px; transition: color .2s;
+    }
+    .nav a:hover, .nav a[aria-current="true"] { color: var(--rose); }
+    .nav .btn { margin-left: 12px; padding: 12px 20px; color: #fff; }
+    .nav .btn:hover { color: #fff; }
+
+    .menu-toggle {
+      display: none; width: 44px; height: 44px; border: 0; background: none; cursor: pointer;
+      border-radius: 8px; position: relative;
+    }
+    .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after {
+      position: absolute; left: 11px; width: 22px; height: 2px; background: var(--ink);
+      content: ""; transition: transform .25s, opacity .2s;
+    }
+    .menu-toggle span { top: 21px; }
+    .menu-toggle span::before { left: 0; top: -7px; }
+    .menu-toggle span::after { left: 0; top: 7px; }
+    .menu-toggle[aria-expanded="true"] span { background: transparent; }
+    .menu-toggle[aria-expanded="true"] span::before { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span::after { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 960px) {
+      .menu-toggle { display: block; }
+      .nav {
+        position: fixed; inset: var(--header-h) 0 auto 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: #fff; border-bottom: 1px solid var(--line);
+        padding: 8px var(--gutter) 24px;
+        transform: translateY(-8px); opacity: 0; visibility: hidden;
+        transition: transform .25s, opacity .25s, visibility .25s;
+        max-height: calc(100vh - var(--header-h)); overflow-y: auto;
+      }
+      .nav.open { transform: none; opacity: 1; visibility: visible; }
+      .nav a { padding: 14px 4px; font-size: 1.08rem; border-bottom: 1px solid var(--mist); border-radius: 0; }
+      .nav .btn { margin: 16px 0 0; border-radius: 8px; border-bottom: 0; padding: 16px; }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative; overflow: hidden;
+      background: var(--ink); color: #fff;
+      padding: clamp(72px, 11vw, 140px) 0 clamp(80px, 11vw, 150px);
+    }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.6vw, 4.4rem);
+      font-weight: 800; letter-spacing: -0.035em; line-height: 1.04;
+      max-width: 16ch;
+    }
+    .hero-lead { margin-top: 28px; font-size: clamp(1.1rem, 1.6vw, 1.3rem); color: #CAC8D2; max-width: 34em; }
+    .hero-actions { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 14px; }
+    .hero-meta { margin-top: 56px; display: flex; flex-wrap: wrap; gap: 12px 32px; color: #9C9AA8; font-size: .95rem; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-meta svg { flex: none; }
+
+    .hero-visual { position: relative; justify-self: end; width: 100%; max-width: 440px; margin: 0; }
+    .hero-photo {
+      width: 100%; aspect-ratio: 518 / 700; object-fit: cover; object-position: center top;
+      border-radius: 14px; filter: contrast(1.18) saturate(1.1); opacity: 0; animation: settle 1s .1s cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    @keyframes settle { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { justify-self: start; max-width: 520px; }
+      .hero-photo { aspect-ratio: 4 / 3; object-position: center 30%; }
+    }
+
+    /* Section headings */
+    .section-head { max-width: 640px; margin-bottom: clamp(40px, 6vw, 64px); }
+    .section-head h2 { font-size: clamp(2rem, 3.8vw, 2.9rem); font-weight: 800; }
+    .section-head p { margin-top: 18px; color: var(--slate); font-size: 1.12rem; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 96px); align-items: start; }
+    .about-grid h2 { font-size: clamp(2rem, 3.8vw, 2.9rem); font-weight: 800; }
+    .about-body { margin-top: 24px; font-size: 1.15rem; color: var(--granite); max-width: 36em; }
+    .commitment {
+      background: var(--mist); border-radius: 14px;
+      padding: clamp(28px, 4vw, 44px);
+      border-left: 4px solid var(--rose);
+    }
+    .commitment h3 { font-size: 1.35rem; font-weight: 700; }
+    .commitment p { margin-top: 14px; color: var(--granite); }
+    @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+
+    /* Services */
+    .services { background: var(--mist); }
+    .service-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 clamp(32px, 6vw, 72px); list-style: none; margin: 0; padding: 0; }
+    .service {
+      display: grid; grid-template-columns: 52px 1fr; gap: 20px;
+      padding: 32px 0; border-top: 1px solid var(--line);
+    }
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 12px; background: #fff;
+      display: grid; place-items: center; color: var(--c, var(--rose));
+      border: 1px solid var(--line);
+    }
+    .service:nth-child(2) .service-icon { --c: #D98A12; }
+    .service:nth-child(3) .service-icon { --c: #148A74; }
+    .service:nth-child(4) .service-icon { --c: var(--granite); }
+    .service h3 { font-size: 1.3rem; font-weight: 700; }
+    .service p { margin-top: 8px; color: var(--slate); }
+    @media (max-width: 760px) { .service-list { grid-template-columns: 1fr; } }
+
+    /* Why */
+    .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(24px, 3vw, 40px); }
+    .why-item { padding-top: 24px; border-top: 4px solid var(--rose); }
+    .why-item:nth-child(2) { border-top-color: var(--amber); }
+    .why-item:nth-child(3) { border-top-color: var(--teal); }
+    .why-item:nth-child(4) { border-top-color: var(--granite); }
+    .why-item h3 { font-size: 1.2rem; font-weight: 700; }
+    .why-item p { margin-top: 10px; color: var(--slate); }
+    @media (max-width: 960px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
+
+    /* Process: strata bands */
+    .process { background: var(--ink); color: #fff; }
+    .process .section-head p { color: #B3B1BD; }
+    .bands { list-style: none; margin: 0; padding: 0; border-radius: 14px; overflow: hidden; }
+    .band {
+      display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 24px;
+      padding: 26px clamp(20px, 4vw, 40px);
+      background: var(--b);
+    }
+    .band { background: var(--ink-2); border-left: 5px solid var(--m); }
+    .band + .band { border-top: 1px solid rgba(255,255,255,.06); }
+    .band:nth-child(3n+1) { --m: var(--rose); }
+    .band:nth-child(3n+2) { --m: var(--amber); }
+    .band:nth-child(3n)   { --m: var(--teal); }
+    .band-num { font-size: 2rem; font-weight: 800; color: var(--m); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    .band h3 { font-size: clamp(1.15rem, 2vw, 1.45rem); font-weight: 700; }
+    .band p { color: #BAB8C4; font-size: .98rem; max-width: 30em; text-align: right; }
+    @media (max-width: 760px) {
+      .band { grid-template-columns: 52px 1fr; gap: 6px 16px; }
+      .band-num { font-size: 1.5rem; grid-row: span 2; align-self: start; }
+      .band p { text-align: left; }
+    }
+
+    /* Careers */
+    .careers-inner {
+      display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
+      padding: clamp(32px, 5vw, 56px); border: 1px solid var(--line); border-radius: 14px;
+    }
+    .careers-inner h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 800; }
+    .careers-inner p { margin-top: 12px; color: var(--slate); max-width: 34em; }
+    @media (max-width: 760px) { .careers-inner { grid-template-columns: 1fr; } }
+
+    /* Contact */
+    .contact { background: var(--mist); }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(40px, 6vw, 80px); align-items: start; }
+    .contact-grid h2 { font-size: clamp(2rem, 3.8vw, 2.9rem); font-weight: 800; }
+    .contact-lead { margin-top: 18px; color: var(--granite); font-size: 1.12rem; max-width: 30em; }
+    .details { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 22px; }
+    .details li { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; }
+    .details .ic {
+      width: 44px; height: 44px; border-radius: 10px; background: #fff; border: 1px solid var(--line);
+      display: grid; place-items: center; color: var(--rose);
+    }
+    .details strong { display: block; font-weight: 600; font-size: .95rem; color: var(--slate); }
+    .details a { color: var(--ink); font-weight: 600; text-decoration: none; word-break: break-word; }
+    .details a:hover { color: var(--rose-dark); text-decoration: underline; }
+    .details address { font-style: normal; }
+
+    .form {
+      background: #fff; border-radius: 14px; padding: clamp(24px, 4vw, 40px);
+      border: 1px solid var(--line);
+    }
+    .form h3 { font-size: 1.35rem; font-weight: 700; }
+    .form-note { margin-top: 6px; color: var(--slate); font-size: .95rem; }
+    .fields { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .field { display: grid; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-weight: 600; font-size: .95rem; }
+    .field input, .field textarea, .field select {
+      font: inherit; font-size: 1rem; color: var(--ink);
+      padding: 13px 14px; border: 1px solid #C5CCD5; border-radius: 8px; background: #fff; width: 100%;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field textarea { min-height: 140px; resize: vertical; }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(36,34,44,.12);
+    }
+    .field .err { color: var(--rose-dark); font-size: .88rem; min-height: 0; }
+    .field.invalid input, .field.invalid textarea { border-color: var(--rose-dark); }
+    .form .btn { margin-top: 24px; width: 100%; }
+    .form .btn[disabled] { opacity: .7; cursor: progress; }
+    .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .form-status { margin-top: 16px; padding: 14px 16px; border-radius: 8px; font-size: .98rem; display: none; }
+    .form-status.show { display: block; }
+    .form-status.ok { background: #E6F6F2; color: #0E6454; border: 1px solid #A6DDD1; }
+    .form-status.fail { background: #FDEBEF; color: #9E1638; border: 1px solid #F4B8C7; }
+    .form-status a { color: inherit; font-weight: 600; }
+    .form-done { text-align: center; padding: 24px 0 8px; }
+    .form-done .tick {
+      width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%;
+      background: #E6F6F2; color: var(--teal); display: grid; place-items: center;
+    }
+    .form-done h3 { font-size: 1.4rem; }
+    .form-done p { margin: 10px auto 0; color: var(--slate); max-width: 30em; }
+    .form-done button { margin-top: 22px; background: none; border: 0; font: inherit; font-weight: 600; color: var(--rose-dark); cursor: pointer; text-decoration: underline; }
+    @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 520px) { .fields { grid-template-columns: 1fr; } }
+
+    /* Footer */
+    .footer { background: var(--ink); color: #B3B1BD; padding: 64px 0 calc(40px + env(safe-area-inset-bottom, 0px)); }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer .name { color: #fff; font-weight: 700; font-size: 1.2rem; display: flex; align-items: center; gap: 12px; }
+    .footer .tag { margin-top: 10px; max-width: 26em; font-size: .98rem; }
+    .footer h4 { margin: 0 0 14px; color: #fff; font-size: 1rem; font-weight: 600; }
+    .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .footer a, .footer button.link {
+      color: #B3B1BD; text-decoration: none; font: inherit; font-size: .98rem;
+      background: none; border: 0; padding: 0; cursor: pointer; text-align: left;
+    }
+    .footer a:hover, .footer button.link:hover { color: #fff; }
+    .footer-bottom { padding-top: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; font-size: .92rem; }
+    .social { display: flex; gap: 10px; }
+    .social a {
+      width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center;
+      background: rgba(255,255,255,.07); color: #CAC8D2; transition: background-color .2s, color .2s;
+    }
+    .social a:hover { background: var(--rose); color: #fff; }
+    @media (max-width: 760px) { .footer-top { grid-template-columns: 1fr; } }
+
+    /* Policy dialog */
+    dialog.policy {
+      width: min(720px, calc(100vw - 32px)); max-height: min(86vh, 900px);
+      padding: 0; border: 0; border-radius: 14px; color: var(--ink);
+      box-shadow: 0 30px 80px rgba(20,18,28,.4);
+    }
+    dialog.policy::backdrop { background: rgba(20,18,28,.72); }
+    .policy-bar {
+      position: sticky; top: 0; background: #fff; z-index: 1;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 18px 24px; border-bottom: 1px solid var(--line);
+    }
+    .policy-bar h2 { font-size: 1.35rem; font-weight: 800; }
+    .close {
+      width: 40px; height: 40px; border: 0; border-radius: 8px; background: var(--mist);
+      cursor: pointer; display: grid; place-items: center; color: var(--ink); flex: none;
+    }
+    .close:hover { background: var(--line); }
+    .policy-body { padding: 8px 28px 32px; color: var(--granite); }
+    .policy-body h3 { color: var(--ink); font-size: 1.1rem; font-weight: 700; margin: 28px 0 8px; }
+    .policy-body p + p { margin-top: 12px; }
+    .policy-body ul { margin: 8px 0 0; padding-left: 22px; }
+    .policy-body li + li { margin-top: 6px; }
+    .policy-body a { color: var(--rose-dark); font-weight: 600; }
+    .policy-date { margin-top: 20px; font-size: .95rem; color: var(--slate); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .hero-photo { opacity: 1; }
+    }
+  </style>
 </head>
-<body class="font-sans text-gray-800">
+<body>
+  <a class="skip" href="#main">Skip to content</a>
 
-    <!-- Navbar -->
-    <nav class="bg-white shadow sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3">
-                <img src="logo.png" alt="DataRock Technologies" class="h-14 w-auto">
-            </a>
-            <div class="hidden md:flex gap-8 font-medium">
-                <a href="#home" class="hover:text-rose-600 transition">Home</a>
-                <a href="#about" class="hover:text-rose-600 transition">About</a>
-                <a href="#services" class="hover:text-rose-600 transition">Services</a>
-                <a href="#why" class="hover:text-rose-600 transition">Why Us</a>
-                <a href="#process" class="hover:text-rose-600 transition">Process</a>
-                <a href="#careers" class="hover:text-rose-600 transition">Careers</a>
-                <a href="#contact" class="hover:text-rose-600 transition">Contact</a>
-            </div>
-        </div>
-    </nav>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="wrap header-inner">
+      <a href="#home" class="brand" id="brand" aria-label="DataRock Technologies home">
+        <img src="logo.png" alt="DataRock Technologies" width="187" height="44" onerror="document.getElementById('brand').classList.add('no-logo')">
+        <span class="brand-text">Data<span>Rock</span></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span></button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#why">Why us</a>
+        <a href="#process">Process</a>
+        <a href="#careers">Careers</a>
+        <a href="#contact" class="btn btn-primary">Contact us</a>
+      </nav>
+    </div>
+  </header>
 
+  <main id="main">
     <!-- Hero -->
-    <section id="home" class="hero-bg text-white py-44 text-center">
-        <div class="max-w-5xl mx-auto px-6">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">Enterprise Software Solutions That Drive Business Growth</h1>
-            <p class="text-xl max-w-3xl mx-auto">Building secure, scalable, and high-performance digital solutions tailored for modern businesses.</p>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <h1>Enterprise software solutions that drive business growth</h1>
+          <p class="hero-lead">Building secure, scalable, and high-performance digital solutions tailored for modern businesses.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Start a project</a>
+            <a href="#process" class="btn btn-ghost">See how we work</a>
+          </div>
+          <div class="hero-meta">
+            <span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              Kochi, Kerala, India
+            </span>
+            <span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+              Enterprise, web, mobile &amp; cloud
+            </span>
+          </div>
         </div>
+
+        <figure class="hero-visual">
+          <img class="hero-photo" src="hero-cliffs.jpg" alt="" width="518" height="756">
+        </figure>
+      </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="section-title text-4xl font-bold text-center mb-12">About Us</h2>
-            <div class="max-w-4xl mx-auto text-lg text-gray-700 text-center">
-                <p>DataRock Technologies LLP is a software development company specializing in enterprise software, web applications, and mobile application development. We partner with businesses to design, develop, and maintain secure, scalable, and future-ready digital solutions that improve operational efficiency, accelerate growth, and support long-term digital transformation.</p>
-            </div>
+    <!-- About + Commitment -->
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div>
+          <h2>About us</h2>
+          <p class="about-body">DataRock Technologies LLP is a software development company specializing in enterprise software, web applications, and mobile application development. We partner with businesses to design, develop, and maintain secure, scalable, and future-ready digital solutions that improve operational efficiency, accelerate growth, and support long-term digital transformation.</p>
         </div>
+        <div class="commitment">
+          <h3>Our commitment</h3>
+          <p>Our commitment extends beyond delivering software. We strive to build long-term technology partnerships by providing reliable solutions, transparent communication, continuous innovation, and dedicated support that help our clients achieve lasting business success.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Our Commitment -->
-    <section class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="section-title text-4xl font-bold text-center mb-16">Our Commitment</h2>
-            <div class="max-w-4xl mx-auto text-lg text-gray-700 text-center">
-                <p>Our commitment extends beyond delivering software. We strive to build long-term technology partnerships by providing reliable solutions, transparent communication, continuous innovation, and dedicated support that help our clients achieve lasting business success.</p>
-            </div>
+    <!-- Services -->
+    <section class="section services" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What we build</h2>
+          <p>From internal business systems to customer-facing apps, we design, develop, and maintain software built to last.</p>
         </div>
+        <ul class="service-list">
+          <li class="service">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            </div>
+            <div>
+              <h3>Enterprise software</h3>
+              <p>Custom systems that streamline operations and connect the way your teams work.</p>
+            </div>
+          </li>
+          <li class="service">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M6 6.5h.01M9 6.5h.01"/></svg>
+            </div>
+            <div>
+              <h3>Web applications</h3>
+              <p>Fast, secure web apps and portals that work well on every screen size.</p>
+            </div>
+          </li>
+          <li class="service">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+            </div>
+            <div>
+              <h3>Mobile app development</h3>
+              <p>Mobile apps for iOS and Android, designed around how your users actually work.</p>
+            </div>
+          </li>
+          <li class="service">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9H7z"/></svg>
+            </div>
+            <div>
+              <h3>Cloud solutions</h3>
+              <p>Cloud-ready architecture, deployment, and hosting that scales as your business grows.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section id="why" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="section-title text-4xl font-bold text-center mb-16">Why Choose DataRock</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-3xl card-hover shadow"><h3 class="font-semibold text-xl mb-3">Experienced Engineering Team</h3><p class="text-gray-600">Skilled professionals delivering high-quality solutions.</p></div>
-                <div class="bg-white p-8 rounded-3xl card-hover shadow"><h3 class="font-semibold text-xl mb-3">Secure & Scalable Architecture</h3><p class="text-gray-600">Built for performance, security, and future growth.</p></div>
-                <div class="bg-white p-8 rounded-3xl card-hover shadow"><h3 class="font-semibold text-xl mb-3">Agile & Transparent</h3><p class="text-gray-600">Regular updates and clear communication.</p></div>
-                <div class="bg-white p-8 rounded-3xl card-hover shadow"><h3 class="font-semibold text-xl mb-3">Long-term Partnership</h3><p class="text-gray-600">Ongoing support beyond project delivery.</p></div>
-            </div>
+    <!-- Why -->
+    <section class="section" id="why">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Why choose DataRock</h2>
         </div>
+        <div class="why-grid">
+          <div class="why-item">
+            <h3>Experienced engineering team</h3>
+            <p>Skilled professionals delivering high-quality solutions.</p>
+          </div>
+          <div class="why-item">
+            <h3>Secure &amp; scalable architecture</h3>
+            <p>Built for performance, security, and future growth.</p>
+          </div>
+          <div class="why-item">
+            <h3>Agile &amp; transparent</h3>
+            <p>Regular updates and clear communication.</p>
+          </div>
+          <div class="why-item">
+            <h3>Long-term partnership</h3>
+            <p>Ongoing support beyond project delivery.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Development Process -->
-    <section id="process" class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="section-title text-4xl font-bold text-center mb-16">Our Development Process</h2>
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div><strong>Discovery & Requirement Analysis</strong></div>
-                <div><strong>UI/UX Design & Prototyping</strong></div>
-                <div><strong>Application Development</strong></div>
-                <div><strong>Quality Assurance & Testing</strong></div>
-                <div><strong>Deployment</strong></div>
-                <div><strong>Maintenance & Continuous Improvement</strong></div>
-            </div>
+    <!-- Process -->
+    <section class="section process" id="process">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Our development process</h2>
+          <p>Every project moves through the same six stages, layer by layer, so you always know where things stand.</p>
         </div>
+        <ol class="bands">
+          <li class="band"><span class="band-num">01</span><h3>Discovery &amp; requirement analysis</h3><p>We learn your goals, users, and constraints.</p></li>
+          <li class="band"><span class="band-num">02</span><h3>UI/UX design &amp; prototyping</h3><p>You see and test the experience before it's built.</p></li>
+          <li class="band"><span class="band-num">03</span><h3>Application development</h3><p>We build in short cycles with regular updates.</p></li>
+          <li class="band"><span class="band-num">04</span><h3>Quality assurance &amp; testing</h3><p>Every release is tested for function, security, and performance.</p></li>
+          <li class="band"><span class="band-num">05</span><h3>Deployment</h3><p>We launch to your chosen environment with care.</p></li>
+          <li class="band"><span class="band-num">06</span><h3>Maintenance &amp; continuous improvement</h3><p>Ongoing support keeps your software healthy and evolving.</p></li>
+        </ol>
+      </div>
     </section>
 
     <!-- Careers -->
-    <section id="careers" class="py-24">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-6">Careers at DataRock Technologies</h2>
-            <a href="mailto:careers@datarocktech.com" class="inline-block bg-rose-600 text-white px-12 py-6 rounded-3xl text-xl font-semibold">careers@datarocktech.com</a>
+    <section class="section" id="careers">
+      <div class="wrap">
+        <div class="careers-inner">
+          <div>
+            <h2>Careers at DataRock Technologies</h2>
+            <p>We're always glad to hear from talented people. Send your CV and a short note about the role you're interested in to <a href="mailto:careers@datarocktech.com" style="color:var(--ink);font-weight:600">careers@datarocktech.com</a>.</p>
+          </div>
+          <a href="mailto:careers@datarocktech.com?subject=Job%20application" class="btn btn-primary">Email your CV</a>
         </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="py-20 bg-gray-900 text-white text-center">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Ideas?</h2>
-            <p class="text-xl mb-10">Whether you're building a new digital product, modernizing an existing system, or looking for a trusted technology partner, DataRock Technologies LLP is ready to help.</p>
-            <a href="#contact" class="bg-rose-600 hover:bg-rose-700 px-12 py-6 rounded-3xl text-xl font-semibold">Get In Touch Today</a>
-        </div>
+      </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-10">Get In Touch</h2>
-            <div class="space-y-4 text-lg">
-                <p><strong>Address:</strong><br>L.R. TOWERS, 39/2475-B1, E75,<br>South Janatha Road,<br>Palarivattom, Ernakulam,<br>
-Kerala - 682025, India
-</p>
-
-                <p><strong>Phone:</strong> <a href="tel:+917306653524" class="text-rose-600">+91 73066 53524</a></p>
-                <p><strong>General:</strong> <a href="mailto:info@datarocktech.com" class="text-rose-600">info@datarocktech.com</a></p>
-                <p><strong>Careers:</strong> <a href="mailto:careers@datarocktech.com" class="text-rose-600">careers@datarocktech.com</a></p>
-            </div>
+    <section class="section contact" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <h2>Ready to transform your ideas?</h2>
+          <p class="contact-lead">Whether you're building a new digital product, modernizing an existing system, or looking for a trusted technology partner, DataRock Technologies LLP is ready to help.</p>
+          <ul class="details">
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+              <div>
+                <strong>Address</strong>
+                <address>L.R. Towers, 39/2475-B1, E75,<br>South Janatha Road, Palarivattom,<br>Ernakulam, Kerala 682025, India</address>
+              </div>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></span>
+              <div><strong>Phone</strong><a href="tel:+917306653524">+91 73066 53524</a></div>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+              <div><strong>General enquiries</strong><a href="mailto:info@datarocktech.com">info@datarocktech.com</a></div>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+              <div><strong>Careers</strong><a href="mailto:careers@datarocktech.com">careers@datarocktech.com</a></div>
+            </li>
+          </ul>
         </div>
+
+        <form class="form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <!-- Web3Forms: replace YOUR_ACCESS_KEY with the key emailed to you by web3forms.com -->
+          <input type="hidden" name="access_key" value="e75fd5a6-38b6-42ea-a2c3-c8ad4f9ff1ec">
+          <input type="hidden" name="from_name" value="DataRock website">
+         <div id="formFields">
+          <h3>Tell us about your project</h3>
+          <p class="form-note">Your enquiry goes straight to our team.</p>
+          <div class="fields">
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+              <span class="err" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required>
+              <span class="err" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone <span style="font-weight:400;color:var(--slate)">(optional)</span></label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+            </div>
+            <div class="field">
+              <label for="f-company">Company <span style="font-weight:400;color:var(--slate)">(optional)</span></label>
+              <input id="f-company" name="company" type="text" autocomplete="organization">
+            </div>
+            <div class="field full">
+              <label for="f-service">I'm interested in</label>
+              <select id="f-service" name="service">
+                <option>Enterprise software</option>
+                <option>Web application</option>
+                <option>Mobile app</option>
+                <option>Cloud solutions</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="f-message">Project details</label>
+              <textarea id="f-message" name="message" required></textarea>
+              <span class="err" aria-live="polite"></span>
+            </div>
+          </div>
+          <!-- Spam trap: hidden from people, filled in by bots -->
+          <div class="hp" aria-hidden="true">
+            <label for="f-botcheck">Leave this unchecked</label>
+            <input id="f-botcheck" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit" class="btn btn-primary" id="formSubmit">Send enquiry</button>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+         </div>
+          <div class="form-done" id="formDone" hidden tabindex="-1">
+            <div class="tick" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+            <h3>Enquiry sent</h3>
+            <p>Thanks for getting in touch. Our team has received your details and will reply to the email address you gave.</p>
+            <button type="button" id="formAgain">Send another enquiry</button>
+          </div>
+        </form>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-   <footer class="bg-black text-gray-400 py-16">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-
-            <!-- Company -->
-            <div class="text-center md:text-left">
-                <p class="text-white text-xl font-semibold">DataRock Technologies LLP</p>
-                <p class="text-sm mt-2">&copy; 2026 DataRock Technologies LLP. All rights reserved.</p>
-            </div>
-
-            <!-- Social -->
-            <div class="flex gap-8 text-3xl">
-                <a href="https://lnkd.in/gaUD28WX" target="_blank" aria-label="LinkedIn" class="hover:text-white transition">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-
-                <a href="https://x.com/datarock_tech" target="_blank" aria-label="X" class="hover:text-white transition">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
-
-                <a href="https://www.instagram.com/datarocktechnologies/" target="_blank" aria-label="Instagram" class="hover:text-white transition">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-
-                <a href="https://www.facebook.com/datarocktech" target="_blank" aria-label="Facebook" class="hover:text-white transition">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-            </div>
-
-            <!-- Legal -->
-            <div class="flex flex-wrap justify-center gap-6 text-sm">
-                <a href="#" onclick="showModal('privacy')" class="hover:text-white">Privacy Policy</a>
-                <a href="#" onclick="showModal('terms')" class="hover:text-white">Terms & Conditions</a>
-                <a href="#" onclick="showModal('cookie')" class="hover:text-white">Cookie Policy</a>
-                <a href="#" onclick="showModal('refund')" class="hover:text-white">Refund Policy</a>
-            </div>
-
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <p class="name">
+            <svg width="30" height="26" viewBox="0 0 30 26" aria-hidden="true"><path fill="#E12A56" d="M0 3 L7 5 Q9 6 9 8 V20 H0 Z"/><path fill="#FCB041" d="M10.5 3 L19 0 V26 H10.5 Z"/><path fill="#1DAC92" d="M20.5 12 L26 14 Q29 15.5 29 18 V26 H20.5 Z"/></svg>
+            DataRock Technologies LLP
+          </p>
+          <p class="tag">Smart solutions for a digital world. Enterprise software, web, mobile, and cloud solutions from Kochi, Kerala.</p>
         </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><button class="link" data-policy="privacy">Privacy policy</button></li>
+            <li><button class="link" data-policy="terms">Terms &amp; conditions</button></li>
+            <li><button class="link" data-policy="cookie">Cookie policy</button></li>
+            <li><button class="link" data-policy="refund">Refund policy</button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> DataRock Technologies LLP. All rights reserved.</p>
+        <div class="social">
+          <a href="https://lnkd.in/gaUD28WX" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21H9z"/></svg>
+          </a>
+          <a href="https://x.com/datarock_tech" target="_blank" rel="noopener" aria-label="X">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/datarocktechnologies/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.facebook.com/datarocktech" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8V6.2c0-.8.2-1.2 1.4-1.2H17V2h-2.6C11.3 2 10 3.5 10 6v2H8v3h2v11h4V11h2.7l.3-3z"/></svg>
+          </a>
+        </div>
+      </div>
     </div>
-</footer>
+  </footer>
 
-    <!-- Modal -->
-    <div id="modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50">
-       <div class="bg-white rounded-3xl max-w-2xl max-h-[90vh] overflow-auto relative mx-4">
-
-    <div class="sticky top-0 bg-white z-10 flex justify-end p-5 border-b">
-        <button onclick="closeModal()"
-            class="text-4xl text-gray-400 hover:text-black leading-none">
-            &times;
-        </button>
+  <!-- Policy dialog -->
+  <dialog class="policy" id="policy" aria-labelledby="policyTitle">
+    <div class="policy-bar">
+      <h2 id="policyTitle"></h2>
+      <button class="close" id="policyClose" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
     </div>
+    <div class="policy-body" id="policyBody"></div>
+  </dialog>
 
-    <div id="modal-content" class="prose max-w-none p-10"></div>
+  <!-- Policy content -->
+  <template id="tpl-privacy" data-title="Privacy Policy">
+    <p class="policy-date">Effective date: January 1, 2026</p>
+    <p style="margin-top:16px">At DataRock Technologies LLP, we are committed to protecting the privacy of our website visitors and clients. This Privacy Policy explains how we collect, use, and protect your information.</p>
+    <h3>Information we collect</h3>
+    <p>We may collect information that you voluntarily provide, including your name, email address, phone number, company name, and project-related enquiries submitted through our contact forms or email communications.</p>
+    <h3>How we use your information</h3>
+    <ul>
+      <li>Respond to enquiries and support requests.</li>
+      <li>Communicate regarding our services.</li>
+      <li>Improve our website and user experience.</li>
+      <li>Comply with applicable legal obligations.</li>
+    </ul>
+    <h3>Data protection</h3>
+    <p>We implement appropriate technical and organizational measures to safeguard your information against unauthorized access, disclosure, alteration, or destruction.</p>
+    <h3>Third-party services</h3>
+    <p>Our website may contain links to third-party websites. We are not responsible for their privacy practices or content.</p>
+    <h3>Changes to this policy</h3>
+    <p>We may update this Privacy Policy from time to time. Updates will be published on this page.</p>
+    <h3>Contact</h3>
+    <p>For any privacy-related questions, please contact <a href="mailto:info@datarocktech.com">info@datarocktech.com</a>.</p>
+  </template>
 
-</div>
-    </div>
+  <template id="tpl-terms" data-title="Terms & Conditions">
+    <p style="margin-top:20px">By accessing this website, you agree to comply with these Terms &amp; Conditions.</p>
+    <h3>Website use</h3>
+    <p>The content provided on this website is for general informational purposes only and may be updated without prior notice.</p>
+    <h3>Intellectual property</h3>
+    <p>All content, including text, graphics, logos, icons, images, software, and website design, is the property of DataRock Technologies LLP unless otherwise stated and is protected under applicable intellectual property laws.</p>
+    <h3>Limitation of liability</h3>
+    <p>While we strive to provide accurate information, DataRock Technologies LLP makes no warranties regarding the completeness, reliability, or accuracy of the information presented on this website.</p>
+    <h3>External links</h3>
+    <p>Our website may include links to third-party websites for convenience. We do not endorse or assume responsibility for the content or practices of those websites.</p>
+    <h3>Governing law</h3>
+    <p>These Terms &amp; Conditions shall be governed by the laws of India.</p>
+  </template>
 
-    <script>
-        function showModal(type) {
-            const content = document.getElementById('modal-content');
-            let html = '';
-            
-            if (type === 'privacy') {
-    html = `
-        <h2 class="text-3xl font-bold mb-6">Privacy Policy</h2>
+  <template id="tpl-cookie" data-title="Cookie Policy">
+    <p style="margin-top:20px">This website uses cookies to enhance your browsing experience.</p>
+    <h3>What are cookies?</h3>
+    <p>Cookies are small text files stored on your device that help improve website functionality and user experience.</p>
+    <h3>How we use cookies</h3>
+    <ul>
+      <li>Improve website performance.</li>
+      <li>Remember user preferences.</li>
+      <li>Analyze website traffic and usage patterns.</li>
+    </ul>
+    <h3>Managing cookies</h3>
+    <p>Most web browsers allow users to manage or disable cookies through browser settings. Disabling cookies may affect certain website features.</p>
+  </template>
 
-        <p><strong>Effective Date:</strong> January 1, 2026</p>
+  <template id="tpl-refund" data-title="Refund Policy">
+    <p style="margin-top:20px">DataRock Technologies LLP provides professional software development and technology consulting services.</p>
+    <h3>Service engagement</h3>
+    <p>Project fees, payment schedules, and deliverables are defined in individual proposals, quotations, or service agreements.</p>
+    <h3>Refunds</h3>
+    <p>Payments made for completed milestones, delivered services, consultation, design work, development work, or other completed deliverables are generally non-refundable.</p>
+    <p>Refund requests, where applicable, will be reviewed on a case-by-case basis in accordance with the applicable service agreement.</p>
+    <h3>Cancellation</h3>
+    <p>Clients may request project cancellation in writing. Any outstanding work completed up to the cancellation date shall be billed accordingly.</p>
+    <h3>Contact</h3>
+    <p>For billing or refund-related enquiries, please contact <a href="mailto:info@datarocktech.com">info@datarocktech.com</a>.</p>
+  </template>
 
-        <p class="mt-4">
-            At DataRock Technologies LLP, we are committed to protecting the privacy of our website visitors and clients.
-            This Privacy Policy explains how we collect, use, and protect your information.
-        </p>
+  <script>
+    (function () {
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">Information We Collect</h3>
-        <p>
-            We may collect information that you voluntarily provide, including your name, email address,
-            phone number, company name, and project-related enquiries submitted through our contact forms
-            or email communications.
-        </p>
+      // Header border on scroll
+      var header = document.getElementById('header');
+      var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 8); };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">How We Use Your Information</h3>
-        <ul class="list-disc pl-6 space-y-2">
-            <li>Respond to enquiries and support requests.</li>
-            <li>Communicate regarding our services.</li>
-            <li>Improve our website and user experience.</li>
-            <li>Comply with applicable legal obligations.</li>
-        </ul>
+      // Mobile menu
+      var toggle = document.getElementById('menuToggle');
+      var nav = document.getElementById('nav');
+      function setMenu(open) {
+        nav.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      toggle.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+      nav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+      window.addEventListener('resize', function () { if (window.innerWidth > 960) setMenu(false); });
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">Data Protection</h3>
-        <p>
-            We implement appropriate technical and organizational measures to safeguard your information
-            against unauthorized access, disclosure, alteration, or destruction.
-        </p>
+      // Highlight current section in nav
+      var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]:not(.btn)'));
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) {
+              links.forEach(function (l) {
+                if (l.getAttribute('href') === '#' + en.target.id) l.setAttribute('aria-current', 'true');
+                else l.removeAttribute('aria-current');
+              });
+            }
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        links.forEach(function (l) {
+          var s = document.querySelector(l.getAttribute('href'));
+          if (s) io.observe(s);
+        });
+      }
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">Third-Party Services</h3>
-        <p>
-            Our website may contain links to third-party websites. We are not responsible for their
-            privacy practices or content.
-        </p>
+      // Policy dialog
+      var dlg = document.getElementById('policy');
+      var title = document.getElementById('policyTitle');
+      var body = document.getElementById('policyBody');
+      var lastTrigger = null;
+      document.querySelectorAll('[data-policy]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var tpl = document.getElementById('tpl-' + btn.dataset.policy);
+          title.textContent = tpl.dataset.title;
+          body.innerHTML = '';
+          body.appendChild(tpl.content.cloneNode(true));
+          lastTrigger = btn;
+          if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+          dlg.scrollTop = 0;
+        });
+      });
+      function closeDlg() { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); }
+      document.getElementById('policyClose').addEventListener('click', closeDlg);
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) closeDlg(); });
+      dlg.addEventListener('close', function () { if (lastTrigger) lastTrigger.focus(); });
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">Changes to This Policy</h3>
-        <p>
-            We may update this Privacy Policy from time to time. Updates will be published on this page.
-        </p>
+      // Contact form -> sends to Web3Forms, which emails the enquiry to your inbox
+      var form = document.getElementById('contactForm');
+      var F = form.elements;
+      var submitBtn = document.getElementById('formSubmit');
+      var statusEl = document.getElementById('formStatus');
+      var fieldsEl = document.getElementById('formFields');
+      var doneEl = document.getElementById('formDone');
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">Contact</h3>
-        <p>
-            For any privacy-related questions, please contact:<br>
-            <strong>Email:</strong>
-            <a href="mailto:info@datarocktech.com" class="text-rose-600">info@datarocktech.com</a>
-        </p>
-    `;
-}
-else if (type === 'terms') {
-    html = `
-        <h2 class="text-3xl font-bold mb-6">Terms & Conditions</h2>
+      function setErr(input, msg) {
+        var f = input.closest('.field');
+        f.classList.toggle('invalid', !!msg);
+        f.querySelector('.err').textContent = msg || '';
+        input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      }
+      function showStatus(type, html) {
+        statusEl.className = 'form-status show ' + type;
+        statusEl.innerHTML = html;
+      }
+      var fallback = 'You can also email us directly at <a href="mailto:info@datarocktech.com">info@datarocktech.com</a>.';
 
-        <p>
-            By accessing this website, you agree to comply with these Terms & Conditions.
-        </p>
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        statusEl.className = 'form-status';
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">Website Use</h3>
-        <p>
-            The content provided on this website is for general informational purposes only and may be updated without prior notice.
-        </p>
+        var name = F.name.value.trim();
+        var email = F.email.value.trim();
+        var msg = F.message.value.trim();
+        var ok = true, first = null;
+        if (!name) { setErr(F.name, 'Enter your name.'); ok = false; first = first || F.name; } else setErr(F.name);
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr(F.email, 'Enter a valid email address, like name@company.com.'); ok = false; first = first || F.email; } else setErr(F.email);
+        if (!msg) { setErr(F.message, 'Add a few details about your project.'); ok = false; first = first || F.message; } else setErr(F.message);
+        if (!ok) { first.focus(); return; }
 
-        <h3 class="text-xl font-semibold mt-6 mb-2">Intellectual Property</h3>
-        <p>
-            All content, including text, graphics, logos, icons, images, software, and website design,
-            is the property of DataRock Technologies LLP unless otherwise stated and is protected under
-            applicable intellectual property laws.
-        </p>
-
-        <h3 class="text-xl font-semibold mt-6 mb-2">Limitation of Liability</h3>
-        <p>
-            While we strive to provide accurate information, DataRock Technologies LLP makes no warranties
-            regarding the completeness, reliability, or accuracy of the information presented on this website.
-        </p>
-
-        <h3 class="text-xl font-semibold mt-6 mb-2">External Links</h3>
-        <p>
-            Our website may include links to third-party websites for convenience.
-            We do not endorse or assume responsibility for the content or practices of those websites.
-        </p>
-
-        <h3 class="text-xl font-semibold mt-6 mb-2">Governing Law</h3>
-        <p>
-            These Terms & Conditions shall be governed by the laws of India.
-        </p>
-    `;
-}
-else if (type === 'cookie') {
-    html = `
-        <h2 class="text-3xl font-bold mb-6">Cookie Policy</h2>
-
-        <p>
-            This website uses cookies to enhance your browsing experience.
-        </p>
-
-        <h3 class="text-xl font-semibold mt-6 mb-2">What Are Cookies?</h3>
-        <p>
-            Cookies are small text files stored on your device that help improve website functionality
-            and user experience.
-        </p>
-
-        <h3 class="text-xl font-semibold mt-6 mb-2">How We Use Cookies</h3>
-        <ul class="list-disc pl-6 space-y-2">
-            <li>Improve website performance.</li>
-            <li>Remember user preferences.</li>
-            <li>Analyze website traffic and usage patterns.</li>
-        </ul>
-
-        <h3 class="text-xl font-semibold mt-6 mb-2">Managing Cookies</h3>
-        <p>
-            Most web browsers allow users to manage or disable cookies through browser settings.
-            Disabling cookies may affect certain website features.
-        </p>
-    `;
-}
-else if (type === 'refund') {
-    html = `
-        <h2 class="text-3xl font-bold mb-6">Refund Policy</h2>
-
-        <p>
-            DataRock Technologies LLP provides professional software development and technology consulting services.
-        </p>
-
-        <h3 class="text-xl font-semibold mt-6 mb-2">Service Engagement</h3>
-        <p>
-            Project fees, payment schedules, and deliverables are defined in individual proposals,
-            quotations, or service agreements.
-        </p>
-
-        <h3 class="text-xl font-semibold mt-6 mb-2">Refunds</h3>
-        <p>
-            Payments made for completed milestones, delivered services, consultation, design work,
-            development work, or other completed deliverables are generally non-refundable.
-        </p>
-
-        <p class="mt-4">
-            Refund requests, where applicable, will be reviewed on a case-by-case basis in accordance
-            with the applicable service agreement.
-        </p>
-
-        <h3 class="text-xl font-semibold mt-6 mb-2">Cancellation</h3>
-        <p>
-            Clients may request project cancellation in writing. Any outstanding work completed up to
-            the cancellation date shall be billed accordingly.
-        </p>
-
-        <h3 class="text-xl font-semibold mt-6 mb-2">Contact</h3>
-        <p>
-            For billing or refund-related enquiries, please contact:<br>
-            <strong>Email:</strong>
-            <a href="mailto:info@datarocktech.com" class="text-rose-600">info@datarocktech.com</a>
-        </p>
-    `;
-}
-            
-            content.innerHTML = html;
-            document.getElementById('modal').classList.remove('hidden');
+        if (F.access_key.value === 'YOUR_ACCESS_KEY' || !F.access_key.value) {
+          showStatus('fail', 'This form isn\u2019t connected yet. ' + fallback);
+          return;
         }
 
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-        }
-    </script>
+        var data = new FormData(form);
+        var company = F.company.value.trim();
+        if (!F.botcheck.checked) data.delete('botcheck');
+        data.append('subject', 'New website enquiry: ' + F.service.value + ' from ' + name + (company ? ' (' + company + ')' : ''));
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending\u2026';
+
+        fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+          .then(function (res) {
+            return res.json().catch(function () { return { success: false }; });
+          })
+          .then(function (j) {
+            if (j && j.success) {
+              form.reset();
+              fieldsEl.hidden = true;
+              doneEl.hidden = false;
+              doneEl.focus();
+              return;
+            }
+            var detail = j && j.message ? j.message.replace(/[<>]/g, '') + ' ' : '';
+            showStatus('fail', 'Your enquiry wasn\u2019t sent. ' + detail + 'Try again, or email us directly at <a href="mailto:info@datarocktech.com">info@datarocktech.com</a>.');
+          })
+          .catch(function () {
+            showStatus('fail', 'Your enquiry wasn\u2019t sent because the connection failed. Check your internet connection and try again. ' + fallback);
+          })
+          .then(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send enquiry';
+          });
+      });
+
+      document.getElementById('formAgain').addEventListener('click', function () {
+        doneEl.hidden = true;
+        fieldsEl.hidden = false;
+        statusEl.className = 'form-status';
+        F.name.focus();
+      });
+    })();
+  </script>
 </body>
 </html>
