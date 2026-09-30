@@ -205,6 +205,31 @@
     .service p { margin-top: 8px; color: var(--slate); }
     @media (max-width: 760px) { .service-list { grid-template-columns: 1fr; } }
 
+    /* Products */
+    .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3vw, 32px); }
+    .product {
+      position: relative; display: flex; flex-direction: column;
+      padding: clamp(28px, 4vw, 44px); border-radius: 14px;
+      background: #fff; border: 1px solid var(--line); overflow: hidden;
+    }
+    .product::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--c); }
+    .product-mark {
+      width: 64px; height: 64px; border-radius: 16px; background: var(--c); color: #fff;
+      display: grid; place-items: center; font-size: 1.7rem; font-weight: 800; letter-spacing: -0.03em;
+    }
+    .product-label { margin-top: 28px; font-size: .88rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--lc); }
+    .product--guru { --lc: var(--rose-dark); }
+    .product--wheel { --lc: #117A67; }
+    .product h3 { margin-top: 6px; font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 800; }
+    .product p { margin-top: 12px; color: var(--granite); max-width: 32em; flex: 1; }
+    .product-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-outline { border-color: var(--ink); color: var(--ink); background: transparent; }
+    .btn-outline:hover { background: var(--ink); color: #fff; }
+    .product--guru { --c: var(--rose); }
+    .product--wheel { --c: var(--teal); }
+    .product--wheel .product-mark { background: #148A74; }
+    @media (max-width: 760px) { .product-grid { grid-template-columns: 1fr; } }
+
     /* Why */
     .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(24px, 3vw, 40px); }
     .why-item { padding-top: 24px; border-top: 4px solid var(--rose); }
@@ -372,6 +397,7 @@
       <nav class="nav" id="nav" aria-label="Main">
         <a href="#about">About</a>
         <a href="#services">Services</a>
+        <a href="#products">Products</a>
         <a href="#why">Why us</a>
         <a href="#process">Process</a>
         <a href="#careers">Careers</a>
@@ -471,8 +497,42 @@
       </div>
     </section>
 
+    <!-- Products -->
+    <section class="section" id="products">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Our products</h2>
+          <p>Alongside custom development, we build and run our own software products.</p>
+        </div>
+        <div class="product-grid">
+          <article class="product product--guru">
+            <div class="product-mark" aria-hidden="true">G</div>
+            <p class="product-label">Community app</p>
+            <h3>Gurukudumbam</h3>
+            <p>Gurukudumbam is a community app, designed, built and maintained by DataRock Technologies. Get in touch to learn more or request a demo.</p>
+            <div class="product-actions">
+              <a href="#contact" class="btn btn-primary" data-product="Gurukudumbam">Ask about Gurukudumbam</a>
+              <!-- Optional: add a link to the product website or app store page
+              <a href="https://..." class="btn btn-outline" target="_blank" rel="noopener">Visit website</a> -->
+            </div>
+          </article>
+          <article class="product product--wheel">
+            <div class="product-mark" aria-hidden="true">W</div>
+            <p class="product-label">Mobile app for drivers</p>
+            <h3>WheelNotes</h3>
+            <p>WheelNotes is a mobile app for drivers, designed, built and maintained by DataRock Technologies. Get in touch to learn more or request a demo.</p>
+            <div class="product-actions">
+              <a href="#contact" class="btn btn-primary" data-product="WheelNotes">Ask about WheelNotes</a>
+              <!-- Optional: add a link to the product website or app store page
+              <a href="https://..." class="btn btn-outline" target="_blank" rel="noopener">Visit website</a> -->
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Why -->
-    <section class="section" id="why">
+    <section class="section" id="why" style="background: var(--mist)">
       <div class="wrap">
         <div class="section-head">
           <h2>Why choose DataRock</h2>
@@ -560,7 +620,7 @@
 
         <form class="form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
           <!-- Web3Forms: replace YOUR_ACCESS_KEY with the key emailed to you by web3forms.com -->
-          <input type="hidden" name="access_key" value="e75fd5a6-38b6-42ea-a2c3-c8ad4f9ff1ec">
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
           <input type="hidden" name="from_name" value="DataRock website">
          <div id="formFields">
           <h3>Tell us about your project</h3>
@@ -591,6 +651,8 @@
                 <option>Web application</option>
                 <option>Mobile app</option>
                 <option>Cloud solutions</option>
+                <option>Gurukudumbam</option>
+                <option>WheelNotes</option>
                 <option>Something else</option>
               </select>
             </div>
@@ -635,6 +697,7 @@
           <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#products">Products</a></li>
             <li><a href="#process">Process</a></li>
             <li><a href="#careers">Careers</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -877,6 +940,14 @@
             submitBtn.disabled = false;
             submitBtn.textContent = 'Send enquiry';
           });
+      });
+
+      // Product buttons preselect the product in the enquiry form
+      document.querySelectorAll('[data-product]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!fieldsEl.hidden) F.service.value = btn.dataset.product;
+          setTimeout(function () { F.name.focus({ preventScroll: true }); }, 500);
+        });
       });
 
       document.getElementById('formAgain').addEventListener('click', function () {
